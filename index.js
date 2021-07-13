@@ -5,11 +5,11 @@ const app = express()
 const cors = require('cors')
 const userRoute = require('./routers/userRouter')
 const db= require('./config/databaseConnection')
-
+const bodyParser= require('body-parser')
 
 //
 app.use(cors({origin:'http://localhost:8080'}))
-
+app.use(bodyParser())
 
 
 

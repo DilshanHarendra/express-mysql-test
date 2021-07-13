@@ -3,8 +3,9 @@ const db =  require('../config/databaseConnection')
 
     const users = db.define("users", {
         id:{
-          type:sequelize.INTEGER,
-          primaryKey:true,
+            type:sequelize.INTEGER,
+            primaryKey:true,
+            autoIncrement: true,
         },
         name: {
             type: sequelize.STRING
@@ -19,16 +20,7 @@ const db =  require('../config/databaseConnection')
         age:{
             type:sequelize.INTEGER,
         },
-        created_at: {
-            type: 'TIMESTAMP',
-            defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
-            allowNull: false
-        },
-        updated_at: {
-            type: 'TIMESTAMP',
-            defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
-            allowNull: false
-        }
+
     });
 
  users.sync().then(()=>{
