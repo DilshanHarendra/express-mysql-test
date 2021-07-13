@@ -1,15 +1,38 @@
-module.exports = (sequelize, Sequelize) => {
-    const users = sequelize.define("users", {
+const sequelize = require('sequelize')
+const db =  require('../config/databaseConnection')
+
+    const users = db.define("users", {
+        id:{
+          type:sequelize.INTEGER,
+          primaryKey:true,
+        },
         name: {
-            type: Sequelize.STRING
+            type: sequelize.STRING
         },
         email: {
-            type: Sequelize.STRING
+            type: sequelize.STRING,
+            unique:true
         },
         gender: {
-            type: Sequelize.BOOLEAN
+            type: sequelize.BOOLEAN
+        },
+        age:{
+            type:sequelize.INTEGER,
+        },
+        created_at: {
+            type: 'TIMESTAMP',
+            defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
+            allowNull: false
+        },
+        updated_at: {
+            type: 'TIMESTAMP',
+            defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
+            allowNull: false
         }
     });
 
-    return users;
-};
+ users.sync().then(()=>{
+     console.log(`user table created`)
+ })
+module.exports=users
+
